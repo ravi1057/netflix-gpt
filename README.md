@@ -2,6 +2,21 @@
 
 -Create React app
 -Configured Tailwind css
+-Header
+-Routing of App
+-Login Form
+-Sign Up Form
+-Form Validation
+-Use Ref Hook
+-Firebase SetUp
+-Deploying our app to production
+-Create Sing Up in FirBase user account
+-Implement Sing in user Api
+-Created Redux Store with userSlice
+-Implemented Sign Out 
+-Fetch From TMDB Movies
+-Movies
+
 
 
 # Features
