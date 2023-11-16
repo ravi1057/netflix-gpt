@@ -16,7 +16,18 @@
 -Implemented Sign Out 
 -Fetch From TMDB Movies
 -Movies
-
+-Unsubscribed to the onAuthChnaged 
+-Add hard code values to constant file
+-Register TMDB  API && create an app && get access token
+-Get the data from TMDB nom playing movies list
+-Custom Hook For Now playing movies
+-created Redux store with MovieSlice
+-Update store with the movies data
+-Planning Main Container and secondary container
+-Fetch Data for Trailer Video
+-Update the store with the Trailer Data
+-Embedded the Youtube Video and make it autoplay and mute
+-Tailwind classes to  make it main Container  look awesome
 
 
 # Features
