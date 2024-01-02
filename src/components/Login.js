@@ -8,6 +8,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
+import { BG_URL } from "../utils/constants";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
@@ -17,10 +18,10 @@ const Login = () => {
   const email = useRef(null);
   const password = useRef(null);
 
+
   const handleButtonClick = () => {
     const message = checkValidData(email.current.value, password.current.value);
     setErrorMessage(message);
-
     if (message) return;
     if (!isSignInForm) {
       //Sign  Up Logic
@@ -44,7 +45,7 @@ const Login = () => {
               const errorMessage = error.message;
               setErrorMessage(errorCode + "-" + errorMessage);
             });
-          console.log(user);
+        
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -62,7 +63,6 @@ const Login = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          console.log(user);
           navigate("/browse");
           // ...
         })
@@ -73,15 +73,21 @@ const Login = () => {
         });
     }
   };
-  const toggleSignInForm = () => {
-    setIsSignInForm(!isSignInForm);
-  };
+
+  // const toggleSignInForm = () => {
+  //   setIsSignInForm(!isSignInForm);
+  // };
+
+  const toggleSignInForm=()=>{
+    setIsSignInForm(!isSignInForm)
+  }
+ 
   return (
     <div>
       <Header />
       <div className="absolute">
         <img
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/893a42ad-6a39-43c2-bbc1-a951ec64ed6d/1d86e0ac-428c-4dfa-9810-5251dbf446f8/IN-en-20231002-popsignuptwoweeks-perspective_alpha_website_large.jpg"
+          src={BG_URL}
           alt="logo"
         />
       </div>
@@ -90,7 +96,7 @@ const Login = () => {
         className="absolute w-3/12 relative p-12 bg-black my-36 mx-auto right-0 left-0 text-white rounded-lg bg-opacity-80"
       >
         <h1 className="font-bold text-3xl py-4">
-          {isSignInForm ? "Sing In" : "Sing Up"}
+          {isSignInForm ? "Sign In" : "Sign Up "}
         </h1>
         {!isSignInForm && (
           <input

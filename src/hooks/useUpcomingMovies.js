@@ -11,7 +11,6 @@ const useUpcomingMovies = () => {
       API_OPTIONS
     );
     const json = await data.json();
-    console.log("Json is result===>", json);
     dispatch(addUpcomingMovies(json.results));
   };
 
