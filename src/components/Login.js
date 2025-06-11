@@ -37,7 +37,7 @@ const Login = () => {
             displayName: name.current.value,
           })
             .then(() => {
-              navigate("/browse");
+              navigate("/profiles/select");
             })
             .catch((error) => {
               const errorCode = error.code;
@@ -62,7 +62,7 @@ const Login = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          navigate("/browse");
+          navigate("/profiles/select");
           // ...
         })
         .catch((error) => {

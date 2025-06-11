@@ -1,17 +1,20 @@
 import React, { useEffect } from "react";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom"; // Import Link
 import { useDispatch, useSelector } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice";
 import { LOGO, SUPPORTED_LANGUAGES } from "../utils/constants"; 
 import { toggleGptSearchView } from "../utils/gptSlice";
 import { changeLanguage } from "../utils/configSlice";
+
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((store) => store.user);
+  const currentProfile = useSelector((store) => store.profile.currentProfile); // Get currentProfile
   const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
+
   const handleSignOut = () => {
     signOut(auth)
       .then(() => {
@@ -33,7 +36,7 @@ const Header = () => {
             photoURL: photoURL,
           })
         );
-        navigate("/browse");
+        navigate("/profiles/select");
       } else {
         dispatch(removeUser());
         navigate("");
@@ -74,7 +77,26 @@ const Header = () => {
           >
             {showGptSearch ? "Home Page" : "Gpt Search"}
           </button>
-          <img className="w-12 h-12" alt="usericon" src={user?.photoURL} />
+
+          {currentProfile ? (
+            <div className="flex items-center ml-4">
+              <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center mr-2">
+                <span className="text-white text-sm font-bold">
+                  {currentProfile.name ? currentProfile.name.charAt(0).toUpperCase() : 'P'}
+                </span>
+              </div>
+              <span className="text-white mr-3">{currentProfile.name}</span>
+              <Link to="/profiles/select" className="text-gray-300 hover:text-white mr-3 text-sm">
+                Switch Profile
+              </Link>
+              <Link to="/profiles/manage" className="text-gray-300 hover:text-white mr-4 text-sm">
+                Manage Profiles
+              </Link>
+            </div>
+          ) : (
+            <span className="text-white mr-4 ml-4">No Profile</span> // Fallback
+          )}
+
           <button onClick={handleSignOut} className="font-bold text-white">
             (Sign Out)
           </button>
