@@ -35,7 +35,6 @@ const Login = () => {
           const user = userCredential.user;
           updateProfile(user, {
             displayName: name.current.value,
-            photoURL: "https://example.com/jane-q-user/profile.jpg",
           })
             .then(() => {
               navigate("/browse");
@@ -73,10 +72,6 @@ const Login = () => {
         });
     }
   };
-
-  // const toggleSignInForm = () => {
-  //   setIsSignInForm(!isSignInForm);
-  // };
 
   const toggleSignInForm=()=>{
     setIsSignInForm(!isSignInForm)

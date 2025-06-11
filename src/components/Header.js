@@ -12,14 +12,13 @@ const Header = () => {
   const navigate = useNavigate();
   const user = useSelector((store) => store.user);
   const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
-  console.log(showGptSearch, "===>showGptSearch");
   const handleSignOut = () => {
     signOut(auth)
       .then(() => {
         navigate("/");
       })
       .catch((error) => {
-        navigate("/error");
+        console.error(error);
       });
   };
   useEffect(() => {
