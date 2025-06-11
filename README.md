@@ -38,11 +38,23 @@
 -GPT Search Page
 -Implemented Multiligual Feature(Bonus)
 
+## Environment Variables
+
+This project requires a TMDB API key to fetch movie data.
+
+1.  Create a `.env` file in the root of the project by copying `.env.example`:
+    ```bash
+    cp .env.example .env
+    ```
+2.  Open the `.env` file and replace `your_tmdb_api_key_here` with your actual TMDB API key.
+
+`REACT_APP_TMDB_KEY=your_actual_api_key`
+
 
 
 # Features
--Login/Sign Up
-    -Sign In /Sign up Form
+- Login/Sign Up
+    - Sign In /Sign up Form
     -redirected to  Browse page
 -Browse (after authentication)
  -Header 

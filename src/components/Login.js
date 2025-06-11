@@ -10,6 +10,26 @@ import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
 import { BG_URL } from "../utils/constants";
 
+/**
+ * Login and Sign Up component.
+ *
+ * Responsibilities:
+ * - Renders a form for either signing in or signing up.
+ * - Toggles between Sign In and Sign Up views.
+ * - Handles form input using `useRef` for email and password (and name for sign-up).
+ * - Validates form data using `checkValidData` utility.
+ * - Interacts with Firebase Authentication:
+ *   - `createUserWithEmailAndPassword` for sign-up.
+ *   - `signInWithEmailAndPassword` for sign-in.
+ *   - `updateProfile` to set display name and a placeholder photoURL on sign-up.
+ * - Displays error messages returned from validation or Firebase.
+ * - Navigates to the "/browse" page on successful login/sign-up.
+ * - Renders the `Header` component and a background image.
+ *
+ * This component does not accept any direct props.
+ * It manages its own state for form mode (sign-in/sign-up) and error messages.
+ * Note: A potential bug exists where the 'Full Name' input field for sign-up is not correctly wired to its ref (`name.current.value` might be undefined).
+ */
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);

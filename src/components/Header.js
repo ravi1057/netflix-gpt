@@ -4,9 +4,27 @@ import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice";
-import { LOGO, SUPPORTED_LANGUAGES } from "../utils/constants"; 
+import { LOGO, SUPPORTED_LANGUAGES } from "../utils/constants";
 import { toggleGptSearchView } from "../utils/gptSlice";
 import { changeLanguage } from "../utils/configSlice";
+
+/**
+ * Header component for the application.
+ *
+ * Responsibilities:
+ * - Displays the application logo.
+ * - Manages user authentication state changes:
+ *   - If a user is logged in, it navigates to the browse page and adds user info to Redux.
+ *   - If a user is logged out, it navigates to the login page and removes user info from Redux.
+ * - Provides a "Sign Out" button if a user is logged in.
+ * - Provides a button to toggle the GPT Search view.
+ * - If GPT Search view is active, displays a language selection dropdown.
+ *
+ * This component does not accept any direct props.
+ * It interacts heavily with Redux for user state (`store.user`), GPT search visibility (`store.gpt.showGptSearch`),
+ * and dispatches actions for adding/removing user, toggling GPT search view, and changing language.
+ * It also uses `react-router-dom` for navigation and Firebase `onAuthStateChanged` for auth persistence.
+ */
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
